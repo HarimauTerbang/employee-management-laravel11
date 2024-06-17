@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.dashboard')
 
 @section('content')
 <style>
@@ -20,11 +20,11 @@
             transform: scale(0.9);
         }
     }
-    #home-header {
+    #admin-header {
         animation: fadeInUp 0.5s ease forwards;
     }
 </style>
-    <section id="home-header">
+    <section id='admin-header'>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -38,7 +38,7 @@
                                 </div>
                             @endif
 
-                            <h2>You are a User.</h2>
+                            <h2>Welcome {{ Auth::user()->name }}</h2>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
     </section>
 <script>
     $(document).ready(function() {
-        $('#home-header').addClass('animated');
+        $('#admin-header').addClass('animated');
     });
 </script>
 @endsection
