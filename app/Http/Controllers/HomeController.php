@@ -28,7 +28,7 @@ class HomeController extends Controller
 
     public function listUsers()
     {
-        $users = User::all();
+        $users = User::paginate(30);
         return view('adminusers', compact('users'));
     }
     public function deleteUser($id)
