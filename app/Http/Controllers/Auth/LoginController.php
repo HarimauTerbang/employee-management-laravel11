@@ -12,7 +12,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
 
     public function __construct()
@@ -33,7 +33,7 @@ class LoginController extends Controller
         {
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.home');
-            }else{
+            }elseif (auth()->user()->type == 'user') {
                 return redirect()->route('home');
             }
         }else{

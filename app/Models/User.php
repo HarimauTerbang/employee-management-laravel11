@@ -17,12 +17,10 @@ class User extends Authenticatable
         'password',
         'type'
     ];
-
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
     protected function casts(): array
     {
         return [
@@ -30,7 +28,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
     protected function type(): Attribute
     {
         return new Attribute(

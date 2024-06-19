@@ -31,6 +31,8 @@
                                 <img src="{{ asset('img/illustration.jpg') }}" class="img-fluid d-md-block d-none" alt="Login Image">
                             </div>
                             <div class="col-md-6">
+                                <!-- Pesan kesalahan umum -->
+
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
@@ -62,6 +64,11 @@
                                             {{ __('Remember Me') }}
                                         </label>
                                     </div> --}}
+                                    @if (session('error'))
+                                        <div class="text-danger mb-3">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
 
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
@@ -75,6 +82,7 @@
         </div>
     </div>
 </section>
+
 <script>
     $(document).ready(function() {
         $('#login').addClass('animated');
