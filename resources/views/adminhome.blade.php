@@ -1,53 +1,55 @@
 @extends('layouts.dashboard')
-
-@section('content')
 <style>
-    @keyframes fadeInUp {
-        0% {
-            opacity: 0;
-            transform: scale(0);
-        }
-        50% {
-            opacity: 1;
-            transform: scale(1) ;
-        }
-        80% {
-            opacity: 1;
-            transform: scale(0.85);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(0.9);
-        }
-    }
     #admin-header {
-        animation: fadeInUp 0.5s ease forwards;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    #admin-header.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 </style>
+@section('content')
     <section id='admin-header'>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="text-center">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            <h2>Welcome {{ Auth::user()->name }}</h2>
-                        </div>
+                        <h1 class="text-center display-4 py-4">Welcome {{ Auth::user()->name }}</h1>
+                        <p class="lead">Glad to see you today</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+@endsection
 <script>
-    $(document).ready(function() {
-        $('#admin-header').addClass('animated');
+    document.addEventListener('DOMContentLoaded', () => {
+        // Fungsi untuk menambahkan kelas 'show' ketika elemen masuk ke dalam pandangan
+        function animateSectionOnScroll(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, 500);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }
+
+        // Inisialisasi Intersection Observer
+        const observer = new IntersectionObserver(animateSectionOnScroll, { rootMargin: '0px', threshold: 0.1 });
+
+        // Amati elemen section dengan id 'header'
+        const headerSection = document.querySelector('#admin-header');
+        observer.observe(headerSection);
     });
 </script>
-@endsection

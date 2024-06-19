@@ -40,6 +40,7 @@
                         <div class="form-group">
                             <label for="type">Type</label>
                             <input type="text" name="type" class="form-control" id="type" value="{{ old('type', $user->type) }}" required>
+                            <small class="form-text text-muted">input number 0 for user or 1 for admin</small></p>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
                             <button type="submit" class="btn btn-dark mt-3 rounded-pill px-4 py-2"><i data-feather="edit"></i> Update User</button>

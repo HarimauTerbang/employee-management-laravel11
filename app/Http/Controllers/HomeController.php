@@ -28,7 +28,7 @@ class HomeController extends Controller
 
     public function listUsers()
     {
-        $users = User::paginate(30);
+        $users = User::paginate(9);
         return view('adminusers', compact('users'));
     }
     public function deleteUser($id)
@@ -53,7 +53,7 @@ class HomeController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'type' => 'required|string|max:255',
+            'type' => 'required|integer|max:1',
         ]);
 
         $user = new User;
@@ -82,7 +82,7 @@ class HomeController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'password' => 'nullable|string|min:8|confirmed',
-            'type' => 'required|string|max:255',
+            'type' => 'required|integer|max:1',
         ]);
 
         $user = User::find($id);

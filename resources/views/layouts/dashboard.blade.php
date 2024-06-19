@@ -25,8 +25,8 @@
     </style>
 
 </head>
-
-    <body>
+    @include('partials.admin.navbar')
+    <body class="bg-light">
         @yield('content')
     </body>
 </html>

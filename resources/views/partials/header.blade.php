@@ -1,7 +1,7 @@
 <style>
     #header {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(-20px);
         transition: opacity 1s ease-out, transform 1s ease-out;
     }
 

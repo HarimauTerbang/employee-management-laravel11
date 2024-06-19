@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm fixed-top" >
     <div class="container p-2">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ route('admin.home') }}">
             <h4 class="fw-bold text-dark">E-Management</h4>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -14,18 +14,12 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto fw-bold">
-                <li class="nav-item">
-                    <a class="nav-link" href="../">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../#features">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../#contact">Contact</a>
-                </li>
+                <a class="nav-link" href="{{ route('admin.home') }}">
+                    {{ __('Dashboard') }}
+                </a>
+                <a class="nav-link" href="{{ route('admin.users') }}">
+                    {{ __('Employee List') }}
+                </a>
 
                 <!-- Authentication Links -->
                 @guest
@@ -47,12 +41,17 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('admin.home') }}">
+                                {{ __('Dashboard') }}
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
