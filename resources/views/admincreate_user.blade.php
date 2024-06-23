@@ -35,8 +35,12 @@
                         </div>
                         <div class="form-group">
                             <label for="type">Type</label>
-                            <input type="text" name="type" class="form-control" id="type" value="{{ old('type') }}" required>
-                            <small class="form-text text-muted">input number 0 for user or 1 for admin</small></p>
+                            {{-- <input type="text" name="type" class="form-control" id="type" value="{{ old('type') }}" required> --}}
+                            <select name="type" class="form-select">
+                                <option value="0">User</option>
+                                <option value="1">Admin</option>
+                            </select>
+                            {{-- <small class="form-text text-muted">input number 0 for user or 1 for admin</small></p> --}}
                         </div>
 
                         <div class="d-flex justify-content-end gap-2">
